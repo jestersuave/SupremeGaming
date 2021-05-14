@@ -1,0 +1,3 @@
+// Discord bot token
+// Get yours @ https://discord.com/developers/applications
+export const BOT_TOKEN = '';

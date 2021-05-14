@@ -1,5 +1,21 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "defaultProject": "data-api-nest",
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
   "projects": {
     "scss": {
       "projectType": "library",
@@ -357,22 +373,56 @@
           }
         }
       }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/nest"
-  },
-  "defaultProject": "data-api-nest",
-  "schematics": {
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
     },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
+    "supreme-discord-bot-node": {
+      "root": "apps/supreme-discord-bot-node",
+      "sourceRoot": "apps\\supreme-discord-bot-node\\src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/supreme-discord-bot-node",
+            "main": "apps/supreme-discord-bot-node/src/main.ts",
+            "tsConfig": "apps/supreme-discord-bot-node/tsconfig.app.json",
+            "assets": ["apps/supreme-discord-bot-node/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/supreme-discord-bot-node/src/environments/environment.ts",
+                  "with": "apps/supreme-discord-bot-node/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "supreme-discord-bot-node:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/supreme-discord-bot-node/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/supreme-discord-bot-node"],
+          "options": {
+            "jestConfig": "apps/supreme-discord-bot-node/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
