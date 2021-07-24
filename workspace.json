@@ -38,7 +38,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "data-api-nest:build"
+            "buildTarget": "data-api-nest:build",
+            "port": 7777
           }
         },
         "lint": {
