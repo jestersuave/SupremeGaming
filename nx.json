@@ -27,6 +27,7 @@
     "supremegaming-angular": { "tags": [] },
     "supremegaming-angular-e2e": { "tags": [], "implicitDependencies": ["supremegaming-angular"] },
     "api": { "tags": [] },
-    "utilities-rcon": { "tags": [] }
+    "utilities-rcon": { "tags": [] },
+    "common-entities-administration": { "tags": [] }
   }
 }
